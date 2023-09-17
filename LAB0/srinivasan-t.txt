@@ -1,0 +1,2 @@
+I state here that I have a complete installation of Ubuntu 20.04 Focal on my local machine, and it is ready and set to be used for the Course EECE5554.
+I also state that I am ready to use git and github on this course, I have read the docs and am familiar with the environment.
