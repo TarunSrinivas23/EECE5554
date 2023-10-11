@@ -1,0 +1,11 @@
+<launch>
+    <!-- Define parameters for serial port and baud rate -->
+    <arg name="port" default="/dev/ttyUSB0"/>
+    <arg name="baud_rate" default="4800"/>
+
+    <!-- Start gps_processor node -->
+    <node name="gps_processor_node" pkg="gps_driver" type="driver.py" output="screen">
+        <param name="port" value="$(arg port)"/>
+        <param name="baud_rate" value="$(arg baud_rate)"/>
+    </node>
+</launch>
