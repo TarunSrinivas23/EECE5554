@@ -77,6 +77,8 @@ def plot_data(df, args):
         plt.figure()
 
         true_easting, true_northing, _, _ = utm.from_latlon(convert_to_utm(float(true_latitude*100)), convert_to_utm(float(true_longitude*100)))
+        true_easting = 329895.54
+        true_northing = 4686750.64
         print(true_easting, true_northing)
         df["utm_easting"] = df["utm_easting"] - true_easting
         df["utm_northing"] = df["utm_northing"] - true_northing
@@ -120,6 +122,8 @@ def plot_data(df, args):
         true_longitude =  -71.0350
         plt.figure()
         true_easting, true_northing, _, _ = utm.from_latlon(convert_to_utm(float(true_latitude*100)), convert_to_utm(float(true_longitude*100)))
+        true_easting = 329895.54
+        true_northing = 4686750.64
         print(true_easting, true_northing)
         df["utm_easting"] = df["utm_easting"] - true_easting
         df["utm_northing"] = df["utm_northing"] - true_northing
