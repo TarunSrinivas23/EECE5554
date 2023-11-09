@@ -33,18 +33,22 @@ def gps_processor():
             elif datalist[4] =='':
                 continue
             else:
-                msg.header = Header()
-                msg.header.frame_id = "GPS1_Frame"
+                msg.Header = Header()
+                msg.Header.frame_id = "GPS1_Frame"
                 gps_time = float(datalist[1])
-                msg.header.stamp.secs = int(gps_time)
-                msg.header.stamp.nsecs = int((gps_time - msg.header.stamp.secs) * 1e9)
-                msg.latitude = convert_to_utm(float(datalist[2]))
-                msg.longitude = convert_to_utm(-float((datalist[4])))
+                seconds = int(gps_time)
+                seconds = (seconds//10000)*3600 + ((seconds%10000)//100)*60 + (seconds%100)
+                print(seconds)
+                msg.Header.stamp.secs = int(seconds)
+                msg.Header.stamp.nsecs = int((gps_time - int(gps_time)) * 1e9)
+                msg.Latitude = convert_to_utm(float(datalist[2]))
+                msg.Longitude = convert_to_utm(-float((datalist[4])))
                 # position_utm = np.array(utm.from_latlon(convert_to_utm(float(datalist[2])), convert_to_utm(float(datalist[4]))))
                 # print(position_utm)
-                msg.altitude = float(datalist[9])
-                msg.utc = float(datalist[1])
-                msg.utm_easting, msg.utm_northing, msg.zone, msg.zone_letter = utm.from_latlon(convert_to_utm(float(datalist[2])), convert_to_utm(-float(datalist[4])))
+                msg.Altitude = float(datalist[9])
+                msg.HDOP = float(datalist[8])
+                msg.UTC = float(datalist[1])
+                msg.UTM_easting, msg.UTM_northing, msg.Zone, msg.Letter = utm.from_latlon(convert_to_utm(float(datalist[2])), convert_to_utm(-float(datalist[4])))
                 pub.publish(msg)
                 print("published")
                 rate.sleep()
