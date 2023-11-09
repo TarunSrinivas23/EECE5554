@@ -25,7 +25,7 @@ def gps_processor():
         data = str(gps_signal.readline())
         # print("data")
         datalist = data.split(",")
-        # print(datalist[0][-5:])
+        print(datalist[0][-5:])
         if datalist[0][-5:] == "GPGGA":
             # print("hello world")
             if datalist[2] == '':
